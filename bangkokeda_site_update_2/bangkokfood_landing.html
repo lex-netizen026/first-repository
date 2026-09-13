@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="./banfood_favi.png" type="image/x-icon">
+<title>Домашняя кухня с доставкой — Бангкок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  /* ===== ЗАМЕНИТЕ НА ВАШУ ССЫЛКУ ===== */
+  /* Везде в файле встречается https://t.me/bangkokfood_channel —
+     замените на реальную ссылку вашего Telegram-канала перед публикацией */
+
+  /* ===== ФАЙЛЫ УЗОРОВ ===== */
+  /* Рядом с этим html-файлом должны лежать 3 файла (отправлены вместе с ним):
+     uzor1_border_rust.png       — тонкий орнамент-оберег (рамка по краям hero)
+     uzor2_gold.png              — геометрический узор, вертикальная заливка
+     uzor2_gold_horizontal.png   — тот же узор, развёрнутый для горизонтальных полос
+     Все три уже перекрашены под цвета сайта (rust / gold), менять их не нужно. */
+
+  :root{
+    --cream:#F7EFE1;
+    --cream-deep:#F0E4CF;
+    --rust:#B5432B;
+    --rust-dark:#8F3320;
+    --gold:#D9A441;
+    --espresso:#2B1B14;
+    --espresso-soft:#5A4438;
+    --line:#E3D2B3;
+    --max-w:1120px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'PT Sans', sans-serif;
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Playfair Display', serif;
+    color:var(--espresso);
+    line-height:1.15;
+    font-weight:600;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  img,svg{display:block;max-width:100%;}
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ===== HEADER ===== */
+
+  header{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    font-family:'Playfair Display', serif;
+    font-size:38px;
+    font-weight:600;
+    letter-spacing:0.2px;
+    position:relative;
+    padding-bottom:12px;
+  }
+
+  .brand::after{
+    content:"";
+    position:absolute;
+    left:1px;
+    bottom:0;
+    width:235px;
+    max-width:100%;
+    height:22px;
+    background-image:url('./uzor2_gold_horizontal.png');
+    background-repeat:repeat-x;
+    background-size:auto 100%;
+    opacity:.7;
+    border-radius:2px;
+  }
+
+  .brand span{color:var(--rust);}
+
+  .header-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--rust);
+    color:var(--cream);
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+
+  .header-cta:hover{
+    background:var(--rust-dark);
+    transform:translateY(-1px);
+  }
+
+  /* ===== HERO ===== */
+
+  .hero{
+    padding:88px 0 76px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-120px;
+    right:-160px;
+    width:480px;
+    height:480px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, rgba(217,164,65,0.35), rgba(217,164,65,0) 68%);
+    pointer-events:none;
+  }
+
+  /* Внутренняя рамка hero — та же ширина 1120px, что и у остальных блоков (.wrap),
+     декоративные колонки теперь привязаны к её краям, а не к краю окна браузера. */
+  .hero-frame{
+    position:relative;
+  }
+
+  .hero-inner{
+    max-width:680px;
+    animation:riseIn 0.8s ease both;
+  }
+
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .hero h1{
+    font-size:clamp(34px, 5vw, 54px);
+    margin-bottom:22px;
+  }
+
+  .hero p{
+    font-size:19px;
+    color:var(--espresso-soft);
+    max-width:520px;
+    margin-bottom:34px;
+  }
+
+  .btn-primary{
+    display:inline-block;
+    background:var(--rust);
+    color:var(--cream);
+    padding:16px 34px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:17px;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-primary:hover{
+    background:var(--rust-dark);
+    transform:translateY(-2px);
+  }
+
+  .hero-note{
+    margin-top:16px;
+    font-size:14px;
+    color:var(--espresso-soft);
+  }
+
+  /* ===== ДЕКОРАТИВНЫЕ КОЛОНКИ HERO (узор 1 + узор 2 + казан/мангал) ===== */
+  /* Видны только на широких экранах — на ноутбуках и телефонах в этом месте
+     и так мало пустого места, поэтому колонки скрываются медиа-запросом ниже. */
+
+  .hero-decor{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:124px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .hero-decor.is-left{ left:0; }
+  .hero-decor.is-right{ right:0; }
+
+  .hero-decor .uzor-edge{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:20px;
+    background-image:url('./uzor1_border_rust.png');
+    background-repeat:repeat-y;
+    background-size:20px auto;
+    opacity:.6;
+  }
+
+  .hero-decor.is-left .uzor-edge{ left:0; }
+  .hero-decor.is-right .uzor-edge{ right:0; }
+
+  .hero-decor .uzor-fill{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:104px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:38%;
+  }
+
+  /* Узор-заливка выведена в псевдоэлемент, чтобы его пониженная прозрачность
+     не затемняла саму иконку (казан/мангал), лежащую поверх. */
+  .hero-decor .uzor-fill::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url('./uzor2_gold.png');
+    background-repeat:repeat;
+    background-size:104px auto;
+    opacity:.16;
+    z-index:0;
+  }
+
+  .hero-decor .uzor-fill > *{
+    position:relative;
+    z-index:1;
+  }
+
+  .hero-decor.is-left .uzor-fill{ left:20px; }
+  .hero-decor.is-right .uzor-fill{ right:20px; }
+
+  .hero-icon{
+    width:72px;
+    height:72px;
+    opacity:.9;
+  }
+
+  /* Запасной вариант вместо SVG-иконки — см. комментарий в разметке ниже:
+     фоновая фотография, которая проступает по центру и растворяется к краям. */
+  .hero-icon-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.5;
+    -webkit-mask-image:radial-gradient(circle at center, #000 0%, #000 30%, transparent 72%);
+    mask-image:radial-gradient(circle at center, #000 0%, #000 30%, transparent 72%);
+  }
+
+  @keyframes flameFlicker{
+    0%, 100%{ opacity:1; transform:scaleY(1) translateY(0); }
+    50%{ opacity:.65; transform:scaleY(1.12) translateY(-2px); }
+  }
+
+  .flame{
+    transform-origin:50% 100%;
+    animation:flameFlicker 1.6s ease-in-out infinite;
+  }
+
+  .flame.d1{ animation-delay:.25s; }
+  .flame.d2{ animation-delay:.5s; }
+
+  @media (max-width:1300px){
+    .hero-decor{ display:none; }
+  }
+
+  /* На тех же широких экранах, где видны декоративные колонки, сдвигаем текстовый
+     блок правее, чтобы он не перекрывался с левой колонкой (узор1+узор2+казан). */
+  @media (min-width:1301px){
+    .hero-inner{ margin-left:124px; }
+  }
+
+  /* ===== РАЗДЕЛИТЕЛЬ С УЗОРОМ (между интро и блюдами) ===== */
+
+  .section-divider{
+    height:15px;
+    margin:6px 0 34px;
+    background-image:url('./uzor2_gold_horizontal.png');
+    background-repeat:repeat-x;
+    background-size:auto 100%;
+    opacity:.6;
+    border-radius:3px;
+  }
+
+  /* ===== INTRO STRIP ===== */
+
+  .intro{
+    padding:8px 0 64px;
+  }
+
+  .intro p{
+    max-width:640px;
+    font-size:19px;
+    color:var(--espresso-soft);
+  }
+
+  /* ===== DISHES ===== */
+
+  .dishes{
+    padding:20px 0 40px;
+  }
+
+  .dish{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+    padding:56px 0;
+    border-top:1px solid var(--line);
+  }
+
+  .dish:last-child{
+    border-bottom:1px solid var(--line);
+  }
+
+  .dish.reverse .dish-media{order:2;}
+  .dish.reverse .dish-text{order:1;}
+
+  .dish-media{
+    aspect-ratio:4/3;
+    border-radius:18px;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg, var(--cream-deep), #E7D2AC);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .dish-media a{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+
+  .dish-media img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:zoom-in;
+    transition:transform 0.3s ease;
+  }
+
+  .dish-media a:hover img{
+    transform:scale(1.03);
+  }
+
+  .dish-media .icon{
+    width:78px;
+    height:78px;
+    opacity:0.85;
+  }
+
+  .dish-media .placeholder-label{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    right:18px;
+    font-size:13px;
+    color:var(--espresso-soft);
+    background:rgba(247,239,225,0.85);
+    padding:8px 12px;
+    border-radius:8px;
+    text-align:center;
+  }
+
+  .dish-text h2{
+    font-size:clamp(26px, 3vw, 32px);
+    margin-bottom:6px;
+  }
+
+  .dish-price{
+    display:inline-block;
+    font-family:'PT Sans', sans-serif;
+    font-weight:700;
+    color:var(--rust);
+    font-size:16px;
+    margin-bottom:18px;
+  }
+
+  .dish-text p{
+    color:var(--espresso-soft);
+    margin-bottom:16px;
+  }
+
+  .dish-text p:last-of-type{
+    margin-bottom:26px;
+  }
+
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--rust);
+    color:var(--rust);
+    padding:11px 24px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+    transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-secondary:hover{
+    background:var(--rust);
+    color:var(--cream);
+    transform:translateY(-1px);
+  }
+
+  /* ===== CLOSING CTA ===== */
+
+  .closing{
+    background:var(--espresso);
+    color:var(--cream);
+    padding:80px 0;
+    margin-top:40px;
+    border-radius:28px 28px 0 0;
+  }
+
+  .closing .wrap{
+    max-width:720px;
+    text-align:center;
+  }
+
+  .closing h2{
+    color:var(--cream);
+    font-size:clamp(28px, 4vw, 38px);
+    margin-bottom:22px;
+  }
+
+  .closing p{
+    color:#E7DCC9;
+    font-size:18px;
+    margin-bottom:18px;
+  }
+
+  .closing .btn-primary{
+    margin-top:20px;
+    background:var(--gold);
+    color:var(--espresso);
+  }
+
+  .closing .btn-primary:hover{
+    background:#c9923a;
+  }
+
+  /* ===== FOOTER ===== */
+
+  footer{
+    background:var(--espresso);
+    color:#C9BBA8;
+    padding:26px 0 40px;
+    text-align:center;
+    font-size:14px;
+    border-radius:0;
+  }
+
+  footer a{
+    color:var(--gold);
+    font-weight:700;
+  }
+
+  /* ===== RESPONSIVE ===== */
+
+  @media (max-width:760px){
+    .dish, .dish.reverse{
+      grid-template-columns:1fr;
+    }
+    .dish.reverse .dish-media{order:1;}
+    .dish.reverse .dish-text{order:2;}
+    .dish{padding:40px 0;}
+    body{font-size:17px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .hero-inner{animation:none;}
+  }
+
+  /* ===== ЛАЙТБОКС ДЛЯ ФОТО (без JS, на чистом CSS через :target) ===== */
+
+  .lightbox{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    background:rgba(24,14,9,0.92);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.25s ease;
+    z-index:1000;
+  }
+
+  .lightbox:target{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .lightbox-close{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+
+  .lightbox img{
+    position:relative;
+    z-index:2;
+    max-width:min(94vw, 1100px);
+    max-height:88vh;
+    width:auto;
+    height:auto;
+    border-radius:14px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  .lightbox-exit{
+    position:absolute;
+    top:22px;
+    right:28px;
+    z-index:3;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(247,239,225,0.15);
+    color:var(--cream);
+    font-size:22px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(247,239,225,0.4);
+  }
+
+  .lightbox-exit:hover{
+    background:rgba(247,239,225,0.28);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .lightbox{transition:none;}
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="brand">Бангкок<span>Еда</span></div>
+    <a class="header-cta" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Заказать в Telegram</a>
+  </div>
+</header>
+
+<section class="hero">
+ <div class="wrap hero-frame">
+
+  <!-- Левая декоративная колонка: узор1 (рамка) + узор2 (заливка) + казан на огне.
+       Видна только на широких экранах (см. @media (max-width:1300px) выше). -->
+  <div class="hero-decor is-left">
+    <div class="uzor-edge"></div>
+    <div class="uzor-fill">
+      <!-- Чтобы вместо SVG-иконки использовать фоновое фото (еле проступающее к центру,
+           почти невидимое по краям) — замените строку ниже на:
+           <img class="hero-icon hero-icon-photo" src="ВАША-ССЫЛКА-ИЛИ-ФАЙЛ.jpg" alt=""> -->
+      <svg class="hero-icon" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- треножник -->
+        <g stroke="#5A4438" stroke-width="4" stroke-linecap="round">
+          <path d="M80 34 L38 128"/>
+          <path d="M80 34 L122 128"/>
+          <path d="M56 96 L104 96"/>
+        </g>
+        <!-- казан -->
+        <g stroke="#5A4438" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M46 56 C46 92 62 112 80 112 C98 112 114 92 114 56"/>
+          <ellipse cx="80" cy="56" rx="34" ry="9"/>
+          <path d="M46 56 C40 58 38 64 44 66"/>
+          <path d="M114 56 C120 58 122 64 116 66"/>
+          <path d="M80 34 L80 47"/>
+        </g>
+        <!-- огонь -->
+        <g>
+          <path class="flame" d="M68 150 C60 138 66 128 70 120 C72 132 80 132 78 144 C82 138 84 130 80 122 C90 130 88 144 78 150 C74 152 70 152 68 150 Z" fill="#B5432B"/>
+          <path class="flame d1" d="M80 150 C74 140 78 130 82 122 C84 132 90 132 88 142 C92 136 93 130 90 124 C98 130 97 142 88 150 C85 152 82 152 80 150 Z" fill="#D9A441"/>
+          <path class="flame d2" d="M92 150 C86 140 90 132 93 126 C95 134 100 134 98 142 C101 138 102 132 100 128 C106 133 105 143 98 150 C95 152 92 152 92 150 Z" fill="#8F3320"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+    <h1>Домашняя еда из нашего района — почувствуй себя как дома!</h1>
+    <p>Плов и квашеная капуста ручной работы, приготовленные в Пхра Кханонге из свежих продуктов, без консервантов и полуфабрикатов. Доставка по всему Бангкоку.</p>
+    <a class="btn-primary" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Смотреть меню в Telegram</a>
+    <div class="hero-note">Заказ оформляется на завтра и позже — мы готовим каждую порцию свежей, без заморозки</div>
+  </div>
+
+  <!-- Правая декоративная колонка: узор1 (рамка) + узор2 (заливка) + мангал с шашлыками. -->
+  <div class="hero-decor is-right">
+    <div class="uzor-edge"></div>
+    <div class="uzor-fill">
+      <!-- Замена на фото: <img class="hero-icon hero-icon-photo" src="ВАША-ССЫЛКА-ИЛИ-ФАЙЛ.jpg" alt=""> -->
+      <svg class="hero-icon" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- ножки мангала -->
+        <g stroke="#5A4438" stroke-width="4" stroke-linecap="round">
+          <path d="M40 118 L28 150"/>
+          <path d="M120 118 L132 150"/>
+          <path d="M52 118 L46 150"/>
+          <path d="M108 118 L114 150"/>
+        </g>
+        <!-- корпус -->
+        <path d="M34 88 L126 88 L112 118 L48 118 Z" stroke="#5A4438" stroke-width="4" stroke-linejoin="round"/>
+        <!-- угли -->
+        <g>
+          <path class="flame" d="M60 88 C56 80 60 74 63 68 C65 76 70 76 68 84 C71 80 72 76 70 72 C76 77 75 86 68 88 Z" fill="#B5432B"/>
+          <path class="flame d1" d="M80 88 C76 78 80 72 83 66 C85 74 90 74 88 82 C91 78 92 74 90 70 C96 75 95 84 88 88 Z" fill="#D9A441"/>
+          <path class="flame d2" d="M100 88 C96 80 100 74 103 68 C105 76 110 76 108 84 C111 80 112 76 110 72 C116 77 115 86 108 88 Z" fill="#8F3320"/>
+        </g>
+        <!-- шампуры с шашлыком -->
+        <g stroke="#5A4438" stroke-width="3" stroke-linecap="round">
+          <path d="M20 78 L140 66"/>
+          <path d="M20 96 L140 84"/>
+          <path d="M20 114 L140 102"/>
+        </g>
+        <g fill="#B5432B">
+          <rect x="44" y="70" width="14" height="10" rx="2" transform="rotate(-5 51 75)"/>
+          <rect x="74" y="66" width="14" height="10" rx="2" transform="rotate(-5 81 71)"/>
+          <rect x="104" y="62" width="14" height="10" rx="2" transform="rotate(-5 111 67)"/>
+        </g>
+        <g fill="#D9A441">
+          <rect x="44" y="88" width="14" height="10" rx="2" transform="rotate(-5 51 93)"/>
+          <rect x="74" y="84" width="14" height="10" rx="2" transform="rotate(-5 81 89)"/>
+          <rect x="104" y="80" width="14" height="10" rx="2" transform="rotate(-5 111 85)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+ </div>
+</section>
+
+<section class="intro">
+  <div class="wrap">
+    <p>Мы — небольшая домашняя кухня в Бангкоке. Никакого конвейера: каждый плов томится в казане несколько часов, а капуста заквашивается естественным способом, без уксуса. Это еда, которую хочется заказывать снова и снова:)</p>
+  </div>
+</section>
+
+<section class="dishes wrap">
+
+  <div class="dish">
+    <div class="dish-media">
+      <a href="#lb-plov-kuritsa" aria-label="Открыть фото крупнее">
+        <img src="./IMG_20260912_164251.jpg" alt="полов с курицей">
+      </a>
+      <!-- <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 12c0 4.418 3.582 8 8 8s8-3.582 8-8" stroke="#8F3320" stroke-width="1.4"/>
+        <path d="M2 12h20" stroke="#8F3320" stroke-width="1.4"/>
+        <path d="M12 4v2M8 4.5l.6 1.9M16 4.5l-.6 1.9" stroke="#8F3320" stroke-width="1.4" stroke-linecap="round"/>
+      </svg> -->
+      <div class="placeholder-label">Фото: плов с курицей</div>
+    </div>
+    <div class="dish-text">
+      <h2>Плов с курицей</h2>
+      <span class="dish-price">от 300 ฿ за 2 порции</span>
+      <p>Классический плов на курином бедре и грудке: долгое томление зирвака из моркови и лука на растительном масле, рассыпчатый длиннозёрный рис, зира, чеснок и немного красного перца. Никакой сухости — рис впитывает бульон постепенно, слой за слоем, поэтому каждая ложка получается сочной.</p>
+      <p>Порция — 300 г. Минимальный заказ — 2 порции, дальше можно добавлять по одной сколько необходимо, по 150 ฿ за порцию.</p>
+      <a class="btn-secondary" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Заказать в Telegram</a>
+    </div>
+  </div>
+
+  <div class="dish reverse">
+    <div class="dish-media">
+      <a href="#lb-plov-svinina" aria-label="Открыть фото крупнее">
+        <img src="./IMG_20260910_170048.jpg" alt="Тарелка плова, трарелка с овощами, кусочки хлеба и стакан фруктового сока">
+      </a>
+      <!-- <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 12c0 4.418 3.582 8 8 8s8-3.582 8-8" stroke="#8F3320" stroke-width="1.4"/>
+        <path d="M2 12h20" stroke="#8F3320" stroke-width="1.4"/>
+        <path d="M12 4v2M8 4.5l.6 1.9M16 4.5l-.6 1.9" stroke="#8F3320" stroke-width="1.4" stroke-linecap="round"/>
+      </svg> -->
+      <div class="placeholder-label">Фото: плов со свининой</div>
+    </div>
+    <div class="dish-text">
+      <h2>Плов со свининой</h2>
+      <span class="dish-price">от 350 ฿ за 2 порции</span>
+      <p>Более насыщенная версия для тех, кто любит поплотнее: свиное филе томится вместе с морковью и луком, пока мясо не начнёт разваливаться от вилки, а рис не пропитается этим же ароматом специй. Получается очень сытный плов — то, что хочется заказать после долгого и насыщенного дня.</p>
+      <p>Порция — 300 г. Минимальный заказ — 2 порции, каждая следующая добавляется по фиксированной цене 170 ฿.</p>
+      <a class="btn-secondary" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Заказать в Telegram</a>
+    </div>
+  </div>
+
+  <div class="dish">
+    <div class="dish-media">
+      <a href="#lb-kapusta" aria-label="Открыть фото крупнее">
+        <img src="./IMG_20260911_105926.jpg" alt="Тарелка с квашеной капустой">
+      </a>
+      <!-- <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="4" width="14" height="16" rx="2" stroke="#8F3320" stroke-width="1.4"/>
+        <path d="M8 9h8M8 13h8M8 17h5" stroke="#8F3320" stroke-width="1.4" stroke-linecap="round"/>
+      </svg> -->
+      <div class="placeholder-label">Фото: квашеная капуста</div>
+    </div>
+    <div class="dish-text">
+      <h2>Квашеная капуста домашнего посола</h2>
+      <span class="dish-price">от 350 ฿ за 1 кг</span>
+      <p>Заквашена так, как это делали до появления уксуса в рецептах — естественным брожением, без единого консерванта. Несколько дней настаивания дают ту самую хрустящую текстуру и лёгкую кислинку, а не мягкую "магазинную" капусту. Источник живых пробиотиков, которых так не хватает в тайской кухне.</p>
+      <p>Хорошо стоит в холодильнике и не теряет вкус — можно взять сразу пару килограмм про запас, как дополнение к плову или любому мясному блюду.</p>
+      <a class="btn-secondary" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Заказать в Telegram</a>
+    </div>
+  </div>
+
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Каждый день мы готовим ограниченное количество порций</h2>
+    <p>Это не конвейерное производство — объём того, что можно приготовить за день, ограниченное. Чем раньше вы оформите заказ, тем больше шанс, что ваше время доставки на завтра ещё свободно.</p>
+    <p>Откройте Telegram-канал, там вы найдете удобного чат-бота, либо напишите в чат канала, выберите блюда и оформите заказ за пару минут — оплата переводом на тайскую карту.</p>
+    <a class="btn-primary" href="https://t.me/bangkokeda" target="_blank" rel="noopener">Открыть Telegram-канал</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Bangkok · Phra Khanong &nbsp;·&nbsp; Заказ и вопросы — <a href="https://t.me/bangkokeda" target="_blank" rel="noopener">в Telegram-канале</a>
+  </div>
+</footer>
+
+<!-- ===== ЛАЙТБОКСЫ (увеличенные фото) — открываются по клику на фото выше, без JS ===== -->
+
+<div class="lightbox" id="lb-plov-kuritsa">
+  <a href="#void" class="lightbox-close" aria-label="Закрыть"></a>
+  <a href="#void" class="lightbox-exit" aria-label="Закрыть">&times;</a>
+  <img src="./IMG_20260912_164251.jpg" alt="Плов с курицей — увеличенное фото">
+</div>
+
+<div class="lightbox" id="lb-plov-svinina">
+  <a href="#void" class="lightbox-close" aria-label="Закрыть"></a>
+  <a href="#void" class="lightbox-exit" aria-label="Закрыть">&times;</a>
+  <img src="./IMG_20260910_170048.jpg" alt="Плов со свининой — увеличенное фото">
+</div>
+
+<div class="lightbox" id="lb-kapusta">
+  <a href="#void" class="lightbox-close" aria-label="Закрыть"></a>
+  <a href="#void" class="lightbox-exit" aria-label="Закрыть">&times;</a>
+  <img src="./IMG_20260911_105926.jpg" alt="Квашеная капуста — увеличенное фото">
+</div>
+
+</body>
+</html>
